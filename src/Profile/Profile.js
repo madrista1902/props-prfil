@@ -1,24 +1,37 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
+const Profile = ({ fullName, bio, profession, children, handleName }) => {
+  const style = {
+    color: 'blue',
+    fontSize: '24px',
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: '20px',
+  };
+ 
 
-const Profile = ({ fullName, bio, profession, handleName, children }) => {
   return (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
-      margin: '1rem'
-    }}>
-      {children}
-      <h2>{fullName}</h2>
+    <div>
+      <h1 style={style}>{fullName}</h1>
+      <h2>{profession}</h2>
       <p>{bio}</p>
-      <p>{profession}</p>
-      <button onClick={() => handleName(fullName)}>
-        Show Name
-      </button>
+      <div>{children}</div>
+      <button onClick={() => handleName(fullName)}>Click Here!</button>
     </div>
   );
 };
 
+Profile.propTypes = {
+  fullName: PropTypes.string.isRequired,
+  bio: PropTypes.string,
+  profession: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+  handleName: PropTypes.func.isRequired,
+};
+
+Profile.defaultProps = {
+  bio: 'welcome to my profile',
+};
 
 export default Profile;
